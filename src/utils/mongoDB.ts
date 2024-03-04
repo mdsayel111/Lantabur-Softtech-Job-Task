@@ -4,7 +4,9 @@ export const connectDB = async () => {
 
     // @ts-ignore
     if (!global.isConnectDB) {
+        console.log(process.env.NEXT_PUBLIC_DB_URL)
         await mongoose.connect(`${process.env.NEXT_PUBLIC_DB_URL}`);
+        console.log("connected")
         // @ts-ignore
         // set isconnectDb true if once connection successful with DB
         global.isConnectDB = true

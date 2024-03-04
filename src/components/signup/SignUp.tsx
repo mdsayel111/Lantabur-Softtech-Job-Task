@@ -12,8 +12,8 @@ export default function SignUp() {
     const form = event.target;
     const data = new FormData(form as HTMLFormElement);
     // get user email and password
-    const email = data.get("email");
-    const password = data.get("password");
+    const email = data?.get("email");
+    const password = data?.get("password");
     try {
       const { data } = await axios.post("/api/auth/signup", {
         email,
