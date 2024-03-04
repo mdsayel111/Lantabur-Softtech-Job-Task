@@ -19,9 +19,11 @@ const defaultTheme = createTheme();
 export default function AuthForm({
   handleSubmit,
   text,
+  loading,
 }: {
   handleSubmit: React.FormEventHandler;
   text: string;
+  loading: boolean;
 }) {
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -68,7 +70,8 @@ export default function AuthForm({
               autoComplete="current-password"
             />
             <Button
-              className="bg-primary"
+              disabled={loading}
+              className="bg-primary disabled:bg-gray-400"
               type="submit"
               fullWidth
               variant="contained"

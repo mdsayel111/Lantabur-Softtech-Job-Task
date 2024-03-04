@@ -6,9 +6,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const handleSubmit: React.ReactEventHandler = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const form = event.target;
     const data = new FormData(form as HTMLFormElement);
     // get user email and password
@@ -20,11 +22,13 @@ export default function SignUp() {
         password,
       });
       toast.success(data.message);
+      setLoading(false);
       router.push("/signin");
     } catch (error: any) {
+      setLoading(false);
       toast.error(error.response.data.message);
     }
   };
 
-  return <AuthForm handleSubmit={handleSubmit} text="Sign Up" />;
+  return <AuthForm loading={loading} handleSubmit={handleSubmit} text="Sign Up" />;
 }

@@ -1,12 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import AuthForm from "../shared/auth_form/AuthForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
   const handleSubmit: React.ReactEventHandler = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const form = event.target;
     const data = new FormData(form as HTMLFormElement);
     // get user email and password
@@ -24,14 +26,16 @@ const SignIn = () => {
         }
       );
       console.log("token", data.token);
+      setLoading(false);
       toast.success(data.message);
     } catch (error: any) {
+      setLoading(false);
       toast.error(error.response.data.message);
     }
   };
   return (
     <div>
-      <AuthForm handleSubmit={handleSubmit} text="Sign In" />
+      <AuthForm loading={loading} handleSubmit={handleSubmit} text="Sign In" />
     </div>
   );
 };
