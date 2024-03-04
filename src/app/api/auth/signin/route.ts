@@ -24,6 +24,6 @@ export const POST = async (req: NextRequest) => {
         }
         return serverErrResponse(401, "Email or password doesn't match")
     } catch (error: any) {
-        return serverErrResponse(500, "Internal server eror")
+        return serverErrResponse(500, error.message)
     }
 }
