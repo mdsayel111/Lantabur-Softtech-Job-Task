@@ -23,6 +23,7 @@ const SignIn = () => {
           withCredentials: true,
         }
       );
+      console.log("token", data.token);
       toast.success(data.message);
     } catch (error: any) {
       toast.error(error.response.data.message);

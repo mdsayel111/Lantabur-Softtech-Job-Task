@@ -16,9 +16,9 @@ export const POST = async (req: NextRequest) => {
         // is password match
         if (isPassMatch) {
             const token = jwt.sign({
-                data: 'foobar'
+                email
             }, process.env.NEXT_PUBLIC_SECRET, { expiresIn: '1d' })
-            return new NextResponse(JSON.stringify({ message: "SignIn successful" }), {
+            return new NextResponse(JSON.stringify({ message: "SignIn successful", token }), {
                 headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; Expires=${new Date(new Date().getTime() + 24 * 60 * 60 * 1000)}; maxAge=${60 * 60 * 24};` }
             })
         }
