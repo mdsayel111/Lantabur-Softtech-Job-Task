@@ -4,13 +4,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { FaLock } from "react-icons/fa";
+import { LuLoader2 } from "react-icons/lu";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -56,7 +55,6 @@ export default function AuthForm({
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
               autoFocus
             />
             <TextField
@@ -67,7 +65,6 @@ export default function AuthForm({
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
             />
             <Button
               disabled={loading}
@@ -77,7 +74,7 @@ export default function AuthForm({
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              {text}
+              {loading ? <LuLoader2 className="text-3xl animate-spin"/> : text}
             </Button>
           </Box>
         </Box>

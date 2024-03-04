@@ -12,8 +12,8 @@ const SignIn = () => {
     const form = event.target;
     const data = new FormData(form as HTMLFormElement);
     // get user email and password
-    const email = data.get("email");
-    const password = data.get("password");
+    const email = data?.get("email");
+    const password = data?.get("password");
     try {
       const { data } = await axios.post(
         "/api/auth/signin",
@@ -30,6 +30,7 @@ const SignIn = () => {
       toast.success(data.message);
     } catch (error: any) {
       setLoading(false);
+      console.log(error);
       toast.error(error.response.data.message);
     }
   };
